@@ -1,0 +1,203 @@
+2014/10/07 14:58:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /var/www/html/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(442): CModule->getComponent('db')
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(451): MigrateCommand->getDbConnection()
+#5 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(482): MigrateCommand->getMigrationHistory(-1)
+#6 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#10 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#12 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#13 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#14 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#15 {main}
+---
+2014/10/07 15:15:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'testdrive'' in /var/www/html/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(442): CModule->getComponent('db')
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(451): MigrateCommand->getDbConnection()
+#5 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(482): MigrateCommand->getMigrationHistory(-1)
+#6 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#10 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#12 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#13 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#14 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#15 {main}
+---
+2014/10/07 15:16:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'someblog.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2014/10/07 15:16:55 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'users' already exists. The SQL statement executed was: CREATE TABLE `users` (
+	`id` int not null primary key auto_increment,
+	`login` varchar(20) not null unique key,
+	`email` varchar(60) not null unique key,
+	`pass` varchar(20) not null,
+	`pic` varchar(30)
+).
+2014/10/07 15:16:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'users' already exists. The SQL statement executed was: CREATE TABLE `users` (
+	`id` int not null primary key auto_increment,
+	`login` varchar(20) not null unique key,
+	`email` varchar(60) not null unique key,
+	`pass` varchar(20) not null,
+	`pic` varchar(30)
+)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbCommand.php(1324): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/CDbMigration.php(233): CDbCommand->createTable('users', Array, NULL)
+#2 /var/www/html/someblog/protected/migrations/m141007_113554_userstable_creation.php(13): CDbMigration->createTable('users', Array)
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(385): m141007_113554_userstable_creation->up()
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m141007_113554_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#10 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#11 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#12 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#13 {main}
+---
+2014/10/07 15:34:25 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''id'),
+	`status` tinyint(1) NOT NULL DEFAULT 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT 3
+).
+2014/10/07 15:34:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''id'),
+	`status` tinyint(1) NOT NULL DEFAULT 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT 3
+)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbCommand.php(1324): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/CDbMigration.php(233): CDbCommand->createTable('posts', Array, NULL)
+#2 /var/www/html/someblog/protected/migrations/m141007_122427_poststable_creation.php(13): CDbMigration->createTable('posts', Array)
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(385): m141007_122427_poststable_creation->up()
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m141007_122427_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#10 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#11 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#12 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#13 {main}
+---
+2014/10/07 15:34:55 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+).
+2014/10/07 15:34:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbCommand.php(1324): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/CDbMigration.php(233): CDbCommand->createTable('posts', Array, NULL)
+#2 /var/www/html/someblog/protected/migrations/m141007_122427_poststable_creation.php(13): CDbMigration->createTable('posts', Array)
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(385): m141007_122427_poststable_creation->up()
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m141007_122427_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#10 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#11 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#12 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#13 {main}
+---
+2014/10/07 15:37:10 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL FOREIGN KEY REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+).
+2014/10/07 15:37:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' at line 5. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL FOREIGN KEY REFERENCES users('id'),
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbCommand.php(1324): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/CDbMigration.php(233): CDbCommand->createTable('posts', Array, NULL)
+#2 /var/www/html/someblog/protected/migrations/m141007_122427_poststable_creation.php(13): CDbMigration->createTable('posts', Array)
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(385): m141007_122427_poststable_creation->up()
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m141007_122427_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#10 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#11 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#12 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#13 {main}
+---
+2014/10/07 15:46:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 3
+)' at line 6. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL ,
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+).
+2014/10/07 15:46:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 3
+)' at line 6. The SQL statement executed was: CREATE TABLE `posts` (
+	`id` int not null PRIMARY KEY AUTO_INCREMENT,
+	`title` varchar(200) NOT NULL,
+	`body` text,
+	`id_author` int NOT NULL ,
+	`status` tinyint(1) NOT NULL DEFAULT = 3
+)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/CDbCommand.php(1324): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/CDbMigration.php(233): CDbCommand->createTable('posts', Array, NULL)
+#2 /var/www/html/someblog/protected/migrations/m141007_122427_poststable_creation.php(13): CDbMigration->createTable('posts', Array)
+#3 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(385): m141007_122427_poststable_creation->up()
+#4 /var/www/html/yii/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m141007_122427_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /var/www/html/yii/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /var/www/html/yii/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 /var/www/html/yii/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CConsoleApplication->processRequest()
+#10 /var/www/html/yii/framework/yiic.php(33): CApplication->run()
+#11 /var/www/html/someblog/protected/yiic.php(7): require_once('/var/www/html/y...')
+#12 /var/www/html/someblog/protected/yiic(4): require_once('/var/www/html/s...')
+#13 {main}
+---
