@@ -69,9 +69,30 @@ class UsersController extends Controller
 
 		if(isset($_POST['Users']))
 		{
-			$model->attributes=$_POST['Users'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+            $time_pref = mktime();
+
+            $model->attributes = $_POST['Users'];
+            $model->imgobj = CUploadedFile::getInstance($model,'pic');
+
+            $finalNamePic = $time_pref . $model->imgobj->getName();
+            $model->setAttribute('pic', $finalNamePic);
+
+            //echo '<pre>';
+            //var_dump($model->pic);
+            //echo '</pre>';
+            //return;
+
+
+            if($model->save()){
+                $dirIMG = realpath('') . DIRECTORY_SEPARATOR . 'images'. DIRECTORY_SEPARATOR . $model->id . DIRECTORY_SEPARATOR . 'avatar';
+                $tmp_name = '';
+                //return;
+                if(mkdir($dirIMG ,0777, true)) {
+                    $model->imgobj->saveAs($dirIMG . DIRECTORY_SEPARATOR . $finalNamePic);
+                }
+
+                $this->redirect(array('view','id'=>$model->id));
+            }
 		}
 
 		$this->render('create',array(

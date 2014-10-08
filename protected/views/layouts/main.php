@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 pull-left">
-                <a class="logo_link">
+                <a class="logo_link" href="<?php echo Yii::app()->request->baseUrl; ?>">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logologo.jpg">
                 </a>
             </div>
@@ -82,11 +82,11 @@
             </div>
         </div>
         <div clas="content">
-
+            <?php echo $content; ?>
         </div>
         <div class="posts">
             <div class="post-item row">
-                <?php echo $content; ?>
+
             </div>
         </div>
     </div>

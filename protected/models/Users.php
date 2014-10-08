@@ -15,6 +15,8 @@
  */
 class Users extends CActiveRecord
 {
+    public $pic;
+    public $imgobj;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -33,10 +35,12 @@ class Users extends CActiveRecord
 		return array(
 			array('login, email, pass', 'required'),
 			array('login, pass', 'length', 'max'=>20),
-			array('email', 'length', 'max'=>60),
-			array('pic', 'length', 'max'=>30),
+			array('email', 'length','min'=>5, 'max'=>60),
+			array('pic', 'file', 'types'=>'png, jpg, gif'),
+			//array('pic', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
+			//array('id, login, email, pass', 'safe', 'on'=>'search'),
 			array('id, login, email, pass, pic', 'safe', 'on'=>'search'),
 		);
 	}
@@ -63,7 +67,7 @@ class Users extends CActiveRecord
 			'login' => 'Login',
 			'email' => 'Email',
 			'pass' => 'Pass',
-			'pic' => 'Pic',
+			'pic' => 'Image',
 		);
 	}
 
@@ -89,7 +93,7 @@ class Users extends CActiveRecord
 		$criteria->compare('login',$this->login,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('pass',$this->pass,true);
-		$criteria->compare('pic',$this->pic,true);
+		//$criteria->compare('pic',$this->pic,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
